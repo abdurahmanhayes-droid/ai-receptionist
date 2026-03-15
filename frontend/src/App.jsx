@@ -1,3 +1,4 @@
+
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -13,14 +14,15 @@ import Settings from './pages/Settings';
 import Layout from './components/Layout';
 
 // API setup
-axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://
+
+localhost:3000';
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check if user is logged in
     const token = localStorage.getItem('token');
     if (token) {
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -31,6 +33,7 @@ function App() {
   }, []);
 
   const verifyToken = async () => {
+
     try {
       const response = await axios.get('/api/auth/verify');
       setUser(response.data.user);
@@ -48,6 +51,7 @@ function App() {
     setUser(userData);
   };
 
+
   const logout = () => {
     localStorage.removeItem('token');
     delete axios.defaults.headers.common['Authorization'];
@@ -64,6 +68,7 @@ function App() {
 
   return (
     <BrowserRouter>
+
       <Routes>
         <Route path="/login" element={
           user ? <Navigate to="/dashboard" /> : <Login onLogin={login} />
@@ -78,6 +83,7 @@ function App() {
           <Route index element={<Navigate to="/dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="calls" element={<Calls />} />
+
           <Route path="appointments" element={<Appointments />} />
           <Route path="messages" element={<Messages />} />
           <Route path="settings" element={<Settings />} />
