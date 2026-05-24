@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: ai-receptionist-api
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: JWT_SECRET
+        value: autohive-secret-key-2024
+      - key: NODE_ENV
+        value: production
